@@ -1,4 +1,5 @@
 import { PublicKey } from "@solana/web3.js";
+import bs58 from "bs58";
 import {
   createContext,
   ReactNode,
@@ -6,7 +7,6 @@ import {
   useEffect,
   useState,
 } from "react";
-import bs58 from "bs58";
 import nacl from "tweetnacl";
 
 type PhantomWalletProviderProps = {
@@ -118,6 +118,8 @@ export const PhantomWalletProvider = ({
       setSharedSecret(sharedSecretDapp);
       setSession(connectData.session);
       setAddress(new PublicKey(connectData.public_key));
+
+      console.log(session);
     }
   }, [deepLink, dappKeyPair.secretKey]);
 
